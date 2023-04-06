@@ -2,10 +2,461 @@
 Theme Name: Cameron New Theme
 Author: Cameron Morgan
 Description: This is my new theme for TAFE
-Version: 0.0.1
+Version: 1.0.0
 Requires at least: 5.9
 Tested up to: 6.1.1
 Requires PHP: 7.4
 Text Domain: cam-new-theme
 Tags: custom-logo, custom-menu, featured-images
 */
+
+/* Variables */
+:root {
+  --font-sans: "Inter", Helvetica, sans-serif;
+  --font-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
+    Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol;
+  --font-size: 18px;
+  --color-green: #27ae60;
+  --color-yellow: #ffda00;
+  --color-red: #ef1f22;
+  --color-pink: #f50057;
+  --color-dark: #333;
+  --color-light: #f2f2f2;
+  --transition-dur: 0.3s;
+}
+
+/* Typography */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size);
+  line-height: 1.5;
+}
+p {
+  color: #000;
+  font-weight: 400;
+}
+em {
+  color: #828282;
+  font-weight: 500;
+}
+a {
+  text-decoration: none;
+  transition: var(--transition-dur);
+}
+a:hover {
+  color: var(--color-green);
+}
+h1,
+h2,
+h3 {
+  font-weight: 800;
+}
+h1 {
+  color: var(--color-light);
+  font-size: 3.5rem;
+}
+h2 {
+  color: var(--color-dark);
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  transition: var(--transition-dur);
+}
+h3 {
+  color: var(--color-dark);
+  font-size: 2rem;
+  margin-bottom: 0.9rem;
+}
+h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.testimonial {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.testimonial cite {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 1.2rem;
+  font-style: normal;
+}
+
+cite span {
+  color: #828282;
+}
+
+.spacer {
+  margin: 75px 0;
+}
+
+/* Button Styles */
+
+.btn {
+  padding: 20px 30px;
+  display: inline-block;
+  border: none;
+  transition: var(--transition-dur);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+.btn:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.btn.btn-primary {
+  color: #111;
+  background-color: var(--color-yellow);
+  padding: 20px 50px;
+}
+
+.btn.btn-secondary {
+  color: #fff;
+  background-color: rgba(51, 51, 51, 0.1);
+}
+
+.btn.btn-invert {
+  color: #fff;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn.btn-invert:hover {
+  box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 5px 5px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Forms */
+
+input[type="text"] {
+  font-size: 1rem;
+  padding: 8px 5px;
+  border-radius: 5px;
+}
+
+/* TOP NAV */
+#top-navigation {
+  padding: 20px 0px;
+}
+
+#main-navbar {
+  flex-grow: 0;
+}
+
+/* Title Banner */
+
+.title-banner {
+  padding: 120px 0;
+  background: linear-gradient(100deg, #f50057 0%, #bb6bd9 100%);
+}
+
+.title-banner .sub-title {
+  color: var(--color-yellow);
+}
+
+/* Subscribe Bar */
+
+.subscribe-bar {
+  background-color: #111;
+  padding: 30px 0;
+}
+
+.subscribe-bar p {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 576px) {
+  .subscribe-bar p {
+    margin-bottom: 20px;
+  }
+}
+
+.subscribe-bar input,
+.subscribe-bar .btn {
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* .subscribe-bar .container .row {
+  display: flex;
+  align-items: center;
+} */
+
+.flex-vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+/* Content Section */
+
+.content-area {
+  padding: 100px 0;
+}
+
+/* Post List */
+.card-img-top {
+  object-fit: none; 
+  object-position: center;
+  width: 100%;
+  max-height: 230px;
+  margin-bottom: 1rem;
+}
+article.post {
+  margin: 50px 0;
+}
+
+.post .meta {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  margin-bottom: 8px;
+}
+
+.blog .post h2 a {
+  font-size: 3rem;
+  color: #111;
+}
+
+.blog .post h2 a:hover {
+  color: var(--color-green);
+}
+
+.blog .post p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #828282;
+  line-height: 1.5;
+}
+
+.blog .post .read-more {
+  color: var(--color-pink);
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 12px;
+  transition: var(--transition-dur);
+}
+
+.blog .post a.read-more:hover {
+  color: var(--color-green);
+  padding-left: 5px;
+}
+
+/* Footer Section */
+
+.footer-calltoaction {
+  padding: 100px 0;
+  background: linear-gradient(101deg, var(--color-pink) 0%, #bb6bd9 100%);
+}
+
+.footer-calltoaction .sub-title {
+  color: var(--color-yellow);
+}
+
+.footer-calltoaction h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.footer-calltoaction p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.footer-calltoaction .btn {
+  margin-top: 2rem;
+}
+
+.copyright {
+  padding: 50px 0;
+}
+
+.copyright p {
+  color: rgba(0, 0, 0, 0.2);
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+/* Elementor Widgets Styles */
+
+.title-wrapper .sub-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-pink);
+}
+
+.sub-title {
+  margin: 0;
+}
+
+.text-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 335px;
+  padding: 35px 30px 100px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.15);
+}
+
+.text-card h4,
+.text-card p {
+  color: #fff;
+}
+
+.text-card p {
+  font-size: 0.9rem;
+}
+
+.text-card .overlay {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(130deg, #f2994a 0%, #eb5757 100%);
+}
+
+.text-card.style-1 .overlay {
+  background: linear-gradient(130deg, #f2994a 0%, #eb5757 100%);
+}
+
+.text-card.style-2 .overlay {
+  background: linear-gradient(130deg, #56ccf2 0%, #2f80ed 100%);
+}
+
+.text-card.style-3 .overlay {
+  background: linear-gradient(130deg, #6fcf97 0%, #219653 100%);
+}
+
+.text-card .overlay-image img {
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+.text-card .overlay-image {
+  position: absolute;
+  transform: rotate(-15deg);
+  border-radius: 20px;
+  overflow: hidden;
+  width: 65%;
+  right: -15%;
+  bottom: -15%;
+  transition: var(--transition-dur);
+}
+
+.text-card:hover .overlay-image {
+  transform: rotate(-18deg);
+}
+
+.section-call-to-action {
+  position: relative;
+  text-align: center;
+  border-radius: 4px;
+  padding: 90px 100px;
+  margin: 20px 0;
+}
+
+.section-call-to-action .underlay-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  border-radius: 40px;
+  background-color: #f2f2f2;
+}
+
+.section-call-to-action .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 40px;
+  overflow: hidden;
+  background: linear-gradient(100deg, #f50057 0%, #bb6bd9 100%);
+  transform: rotate(358deg);
+}
+
+.section-call-to-action .overlay-image img {
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+.section-call-to-action .overlay-image {
+  position: absolute;
+  transform: rotate(18deg);
+  border-radius: 20px;
+  overflow: hidden;
+  width: 30%;
+  left: -4%;
+  bottom: -50%;
+  transition: var(--transition-dur);
+}
+
+.section-call-to-action:hover .overlay-image {
+  transform: rotate(21deg);
+}
+
+.section-call-to-action h2,
+.section-call-to-action .sub-title,
+.section-call-to-action p {
+  color: white;
+}
+
+.section-call-to-action .sub-title {
+  color: var(--color-yellow);
+}
+
+/* pagination */
+
+.camnewtheme-pagination {
+	position: relative;
+	padding-top: 40px;
+	text-align: center;
+}
+
+.camnewtheme-pagination li {
+	position: relative;
+	margin-left: 6px;
+	display: inline-block;
+}
+
+.camnewtheme-pagination li .page-numbers {
+  position: relative;
+	width: 40px;
+	height: 40px;
+  color: #161616;
+	font-size: 16px;
+	font-weight: 400;
+  line-height: 40px;
+	text-align: center;
+	border-radius: 50px;
+  display: inline-block;
+	transition: all var(--transition-dur) ease;
+}
+
+.camnewtheme-pagination li .page-numbers.current,
+.camnewtheme-pagination li:hover a {
+  color: #fff;
+  background-color: #F50057;
+}
