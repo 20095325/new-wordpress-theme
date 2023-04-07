@@ -1,6 +1,6 @@
 <?php
 /**
- * home page template
+ * archive template for portfolio
  *
  * @package cam-new-theme
  * @since 1.0.0
@@ -16,7 +16,7 @@ get_template_part('template-parts/banner', 'title');
   <div class="container">
     <div class="row">
       <div class="col-md-12 overflow-hidden">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
 
           <?php
 
@@ -25,7 +25,7 @@ get_template_part('template-parts/banner', 'title');
             while (have_posts()) {
 
               the_post();
-              get_template_part('template-parts/content', 'excerpt');
+              get_template_part('template-parts/content', 'portfolioexcerpt');
 
             }
 
