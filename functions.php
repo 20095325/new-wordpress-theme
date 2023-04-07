@@ -20,6 +20,13 @@ if(!function_exists('camnewtheme_setup')){
             ));
         add_theme_support('customize-selective-refresh-widgets');
         add_theme_support('responsive-embeds');
+        add_theme_support( 'custom-logo', array(
+            'height'      => 100,
+            'width'       => 400,
+            'flex-height' => true,
+            'flex-width'  => true,
+            'header-text' => array( 'site-title', 'site-description' ),
+        ) );
 
         register_nav_menus(
                 array(
@@ -48,10 +55,6 @@ function cam_scripts_styles() {
 
     // enqueue js files
     wp_enqueue_script( 'bootstrap', get_theme_file_uri('js/bootstrap.bundle.js'), array(), '5.3.0', true);
-    wp_enqueue_script( 'cam-new-theme-js', get_theme_file_uri('js/main.js'), array('jquery', 'jquery-ui-core', 'jquery-ui-selectmenu'), '1.0.0', true);
-    if( is_singular() && comments_open() && get_option( 'thread_comments' ) ){
-        wp_enqueue_script( 'comments-reply' );
-    }
 
 }
 
@@ -83,9 +86,13 @@ function camnewtheme_pagination() {
     echo wp_kses_post($links);
 }
 
+// shorten default excerpt length
+
+add_filter( 'excerpt_length', function( $length ) { return 20; } );
+
 // Remove junk from head
 
-remove_action( 'wp_head', '_wp_render_title_tag', 1 );
+//remove_action( 'wp_head', '_wp_render_title_tag', 1 );
 //remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
 remove_action( 'wp_head', 'wp_resource_hints', 2 );
 remove_action( 'wp_head', 'feed_links', 2 );
@@ -135,3 +142,86 @@ function prefix_bs5_dropdown_data_attribute( $atts, $item, $args ) {
     }
     return $atts;
 }
+
+// register a new widget
+
+function camnewtheme_register_widgets() {
+
+    register_sidebar( array(
+        'name' => __( 'Footer Widget', 'camnewtheme' ),
+        'id' => 'camnewtheme-footer-widget',
+        'before_widget' => '<div id="%1$s" class="col-md-8 offset-md-2 overflow-hidden widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h2 class="widgettitle">',
+        'after_title' => '</h2>'
+    ));
+
+    register_sidebar( array(
+        'name' => __( 'Title bar Widget', 'camnewtheme' ),
+        'id' => 'camnewtheme-subscribe-widget',
+        'before_widget' => '<div id="%1$s" class="col-md-8 offset-md-2 overflow-hidden widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h2 class="widgettitle">',
+        'after_title' => '</h2>'
+    ));
+
+}
+add_action( 'widgets_init', 'camnewtheme_register_widgets' );
+
+
+// Register new post type for portfolio
+function portfolio_register_post_type() {
+    $labels = array(
+        'name' => __( 'Portfolio', 'camnewtheme' ),
+        'singular_name' => __( 'Portfolio', 'camnewtheme' ),
+        'add_new' => __( 'New Portfolio', 'camnewtheme' ),
+        'add_new_item' => __( 'Add New Portfolio', 'camnewtheme' ),
+        'edit_item' => __( 'Edit Portfolio', 'camnewtheme' ),
+        'new_item' => __( 'New Portfolio', 'camnewtheme' ),
+        'view_item' => __( 'View Portfolio', 'camnewtheme' ),
+        'search_items' => __( 'Search Portfolio', 'camnewtheme' ),
+        'not_found' =>  __( 'No Portfolio items Found', 'camnewtheme' ),
+        'not_found_in_trash' => __( 'No Portfolio items found in Trash', 'camnewtheme' ),
+       );
+
+       $args = array(
+        'labels' => $labels,
+        'has_archive' => true,
+        'public' => true,
+        'hierarchical' => false,
+        'supports' => array(
+         'title',
+         'editor',
+         'excerpt',
+         'custom-fields',
+         'thumbnail',
+         'page-attributes'
+        ),
+        'taxonomies' => array( 'category'),
+        'rewrite'   => array( 'slug' => 'portfolio' ),
+        'show_in_rest' => true
+       );
+
+       register_post_type( 'cam_portfolio', $args );
+}
+add_action( 'init', 'portfolio_register_post_type' );
+
+ // remove archive prefix on titles
+
+ function theme_archive_title( $title ) {
+	if ( is_category() ) {
+		$title = single_cat_title( '', false );
+	} elseif ( is_tag() ) {
+		$title = single_tag_title( '', false );
+	} elseif ( is_author() ) {
+		$title = '<span class="vcard">' . get_the_author() . '</span>';
+	} elseif ( is_post_type_archive() ) {
+		$title = post_type_archive_title( '', false );
+	} elseif ( is_tax() ) {
+		$title = single_term_title( '', false );
+	}
+ 
+	return $title;
+}
+
+add_filter( 'get_the_archive_title', 'theme_archive_title' );

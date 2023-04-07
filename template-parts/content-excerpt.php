@@ -18,7 +18,7 @@
       <p class="excerpt">
       <?php force_balance_tags( the_excerpt() ); ?>
       </p>
-      <a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php esc_html_e( 'Read the full post ->', 'bootstrap2wordpress' ); ?></a>
+      <a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php esc_html_e( 'Read the full post ->', 'camnewtheme' ); ?></a>
     </div>
   </div>
 </article>

@@ -66,13 +66,13 @@ $description = get_bloginfo('description', 'display');
 
                     <p class="tag-line sub-title">404</p>
                     <h1>
-                        <?php esc_html_e("Couldn't Be Found", "bootstrap2wordpress"); ?>
+                        <?php esc_html_e("Couldn't Be Found", "camnewtheme"); ?>
                     </h1>
 
                     <?php
                 } elseif (is_search()) {
 
-                    $search_title = sprintf('%s %s', __('Search results for: ', 'bootstrap2wordpress'), get_search_query());
+                    $search_title = sprintf('%s %s', __('Search results for: ', 'camnewtheme'), get_search_query());
                     ?>
 
                     <h1 class="page-title">
@@ -87,26 +87,14 @@ $description = get_bloginfo('description', 'display');
         </div>
     </div>
 </section>
-
+<?php if (is_active_sidebar('camnewtheme-subscribe-widget')): ?>
 <section class="subscribe-bar">
   <div class="container">
     <div class="row flex-vertical-center">
-      <div class="col-sm-6">
-
-        <p><?php echo wp_kses_post( get_theme_mod( 'subscribe_text', "<p><strong>Want to save 20% on the course?</strong> Enter your email and we'll send you the discount code!</p>" ) ); ?></p>
-
-      </div>
-      <div class="col-sm-6">
-
-        <?php
-
-          $camnewtheme_form_html  = get_theme_mod( 'subscribe_form', 'Embed your HTML code here' );
-
-          echo $camnewtheme_form_html;
-
-        ?>
-
-      </div>
+          <aside class="camnewtheme-subscribe-widget">
+            <?php dynamic_sidebar('camnewtheme-subscribe-widget'); ?>
+          </aside>
     </div>
   </div>
 </section>
+<?php endif;
